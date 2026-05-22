@@ -146,4 +146,9 @@ export class WorldBlackboard {
         const unit = this.getUnitAtGrid(gx, gy);
         return unit && unit.type === 'player' ? unit : null;
     }
+
+    getMapCenter() {
+        const tilemap = this.scene.tilemap;
+        return tilemap.getTile(tilemap.COLS / 2, tilemap.ROWS / 2);
+    }
 }

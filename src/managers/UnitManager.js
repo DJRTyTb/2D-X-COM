@@ -11,7 +11,7 @@ export class UnitManager {
     createUnits(tilemapService) {
         const toXY = (tile) => tilemapService.gridToWorld(tile.gridX, tile.gridY);
         const playerTiles = tilemapService.getSpawnTiles('left', 3);
-        const enemyTiles = tilemapService.getSpawnTiles('right', 3);
+        const enemyTiles = tilemapService.getSpawnTiles('right', 7);
 
         const playerDefs = [
             { name: 'Медик', hp: 100, attack: 10, defense: 8, accuracy: 70, role: 'medic', moveRange: 3 },
@@ -21,7 +21,10 @@ export class UnitManager {
         const enemyDefs = [
             { name: 'Пришелец-солдат', hp: 70, attack: 12, defense: 4, accuracy: 60, role: null, moveRange: 3 },
             { name: 'Пришелец-элита', hp: 100, attack: 16, defense: 6, accuracy: 70, role: null, moveRange: 3 },
-            { name: 'Aling', hp: 50, attack: 30, defense: 10, accuracy: 85, role: "swarm", moveRange: 4 },
+            { name: 'Aling', hp: 30, attack: 20, defense: 10, accuracy: 60, role: "swarm", moveRange: 4 },
+            { name: 'Aling', hp: 30, attack: 20, defense: 10, accuracy: 60, role: "swarm", moveRange: 4 },
+            { name: 'Aling', hp: 30, attack: 20, defense: 10, accuracy: 60, role: "swarm", moveRange: 4 },
+            { name: 'Aling', hp: 30, attack: 20, defense: 10, accuracy: 60, role: "swarm", moveRange: 4 },
         ];
 
         playerDefs.forEach((def, i) => {

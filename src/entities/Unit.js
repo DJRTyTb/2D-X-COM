@@ -12,6 +12,8 @@ export class Unit {
         this.moveRange = config.moveRange || 3;
         this.actionsLeft = 2;
         this.tile = null;
+        this.previousTile = null;
+        this.lastAttacker = null;
 
 
         let texture = config.type === 'player' ? 'player_unit' : 'enemy_unit';
@@ -86,7 +88,7 @@ export class Unit {
         if (this.tile && this.tile.unit === this) {
             this.tile.unit = null;
         }
-
+        this.previousTile = this.tile;
         this.tile = tile;
 
         if (tile) {

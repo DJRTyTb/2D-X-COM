@@ -36,7 +36,7 @@ export class StupidAI {
 
             enemy.moveTo(finalTile);
 
-            if (enemy.hasActions() && this.gridDistance(enemy.tile, closest.tile) <= 1) {
+            if (enemy.hasActions() && this.scene.blackboard.distanceBetweenTiles(enemy.tile, closest.tile) <= 1) {
                 combat.performMeleeAttack(enemy, closest);
             }
         }
