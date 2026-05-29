@@ -20,13 +20,8 @@ export class Unit {
         this.extraTurnCharges = 0;
 
         this.summoner = config.summoner;
-        this.summonIntervalMs = config.summonIntervalMs;
-        this.minionTypes = config.minionTypes;
-        this.minionMaxHp = config.minionMaxHp;
-        this.minionMaxAp = config.minionMaxAp;
-        this.minionAttack = config.minionAttack;
-        this.minionDefense = config.minionDefense;
-        this.minionAccuracy = config.minionAccuracy;
+        this.minionRoles = config.minionRoles;
+        this.minionConfigs = config.minionConfigs;
         this.maxSummonedUnits = config.maxSummonedUnits;
         this.summonedUnits = 0;
 
@@ -50,7 +45,6 @@ export class Unit {
             fontSize: '11px', fontFamily: 'Segoe UI', color: '#64748b'
         }).setOrigin(0.5).setDepth(6);
         this.setupInteractivity();
-        this.setupLogic();
     }
 
     get isAlive() {
@@ -227,39 +221,6 @@ export class Unit {
     resetActions() {
         this.actionsLeft = 2;
         this.sprite.setAlpha(1);
-    }
-
-    setupLogic() {
-        switch (this.type) {
-            case 'Summoner':
-                this.attack = 0;
-                
-                if (this.maxSummonedUnits && 0 < this.maxSummonedUnits)
-                    setInterval(this.tryToSummon, this.summonIntervalMs, this);
-
-                break;
-            default:
-
-        }
-    }
-
-    tryToSummon(summoner) {
-        if (summoner.minionTypes
-            && summoner.minionTypes.length
-            && summoner.maxSummonedUnits
-            && summoner.summonedUnits < summoner.maxSummonedUnits) {
-            if (summoner.scene.tryToSummon({
-                name: 'minion ' + (summoner.summonedUnits + 1),
-                hp: summoner.minionMaxHp,
-                ap: summoner.minionMaxAp,
-                attack: summoner.minionAttack,
-                defense: summoner.minionDefense,
-                accuracy: summoner.minionAccuracy,
-                summoner: summoner,
-                team: summoner.team,
-                type: summoner.minionTypes[Math.floor(Math.random() * summoner.minionTypes.length)]
-            }, summoner)) summoner.summonedUnits += 1;
-        }
     }
 
     onKilled() {
